@@ -39,7 +39,7 @@
 
 				</thead>
 
-				<tbody>
+				<tbody id="contact-list-tbody">
 
 					
 
@@ -107,7 +107,7 @@
 					</div>
 				</section>
 				<footer class="modal-card-foot">
-					<button id="btnSave" class="button is-link">Save changes</button>
+					<button id="btnSave" onClick="window.location.reload()" class="button is-link">Save changes</button>
 					<button id="btnClose" class="button is-warning">Cancel</button>
 				</footer>
 			</div>
@@ -164,21 +164,23 @@
 							'<td>' +name+ '</td>'+
 							'<td>' +lastname+ '</td>'+
 							'<td>' +email+ '</td>'+
-							'<td> <a  class="btnEdit button is-warning" href="#" data-key="'+key+'">Update</a> </td>'+
-							'<td> <a  class="btnRemove button is-danger" href="#" data-key="'+key+'" >Delete</a> </td>'+
+							'<td> <a href="#" class="btnEdit button is-warning" data-key="'+key+'">Update</a> </td>'+
+							'<td> <a href="#" class="btnRemove button is-danger"  data-key="'+key+'" onClick="window.location.reload()" >Delete</a> </td>'+
 						'</tr>'
 					
-				);
+			);
 		}
 		function update_data_table(name,lastname,pic,email,phonenumber,key){
-			$("#contact-list #"+key).html('<div class="card"><div class="card-image"><figure class="image is-4by3"><img src="'+pic+'"></figure>'+
-			'</div><div class="card-content"><div class="media"><div class="media-content">'+
-			'<p class="title is-4">'+name+'</p>'+
-			'<p class="title is-4">'+lastname+'</p>'+
-			'<p class="subtitle is-6">@'+email+'</p>'+
-			'<p class="subtitle is-6">@'+phonenumber+'</p>'+
-			'</div></div></div><footer class="card-footer">'+
-			'<a href="#" class="card-footer-item btnEdit"  data-key="'+key+'">Update</a><a  data-key="'+key+'" href="#" class="card-footer-item btnRemove">Remove</a></footer></div>');
+			$("#contact-list #contact-list-tbody#"+key).append(
+				'<tr>'+
+							'<th>' +key+' </th>'+
+							'<td>' +name+ '</td>'+
+							'<td>' +lastname+ '</td>'+
+							'<td>' +email+ '</td>'+
+							'<td> <a href="#" class="btnEdit button is-warning" data-key="'+key+'">Update</a> </td>'+
+							'<td> <a href="#" class="btnRemove button is-danger"  data-key="'+key+'" >Delete</a> </td>'+
+						'</tr>'
+			);
 		}
 		function remove_data_table(key){
 			$("#contact-list #"+key).remove();
